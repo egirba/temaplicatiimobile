@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">temaaplicatiimobile</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">Tema aplicatii mobile</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Lista Probleme</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_signin">Sign In</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_signin_welcome">Welcome to our application.</string>
+    <string name="profile_title">Welcome to our application</string>
+    <string name="menu_logout">Log Out</string>
+    <string name="content_description_media">Here will be the image preview</string>
+    <string name="take_photo">Take photo</string>
+    <string name="upload_picture_text">Descrie problema observata</string>
+    <string name="upload_problem">Posteaza problema</string>
+    <string name="problema_salvata_ok">Problema salvata cu success</string>
+    <string name="search">Search</string>
+    <string name="share">Share</string>
+    <string name="signin_required">Este nevoie sa va logati</string>
+    <string name="cancel">Cancel</string>
+    <string name="signin_required_long">Pentru a putea posta probleme, trebuie sa va logati!</string>
+    <string name="decline">Nu</string>
+    <string name="accept">OK</string>
+    <string name="sigin_success">Logare reusita</string>
+</resources>

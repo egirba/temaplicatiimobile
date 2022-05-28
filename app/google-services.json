@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1092878963637",
+    "project_id": "temaaplicatiimobile",
+    "storage_bucket": "temaaplicatiimobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092878963637:android:0d1d8f2f0b3c1a636cfffc",
+        "android_client_info": {
+          "package_name": "com.example.temaaplicatiimobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092878963637-2m1bgoqqskdqgn8dd58ib6a12h8a9hto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUUeIPlCLBlNmw67ST8A0ezetBhWIOp5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092878963637-2m1bgoqqskdqgn8dd58ib6a12h8a9hto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
