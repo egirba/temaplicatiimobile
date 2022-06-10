@@ -23,18 +23,10 @@ import com.google.firebase.auth.FirebaseAuth
  */
 class SigninFragment : Fragment() {
 
-    // [START auth_fui_create_launcher]
     // See: https://developer.android.com/training/basics/intents/result
     private val signInLauncher = registerForActivityResult(
         FirebaseAuthUIActivityResultContract()
     ) { res ->
-        this.onSignInResult(res)
-    }
-
-    // [START auth_fui_result]
-    private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
-        val response = result.idpResponse
-        Log.d("logIn", response?.email.toString());
         this.view?.let { refresh(it) }
     }
 
@@ -42,15 +34,14 @@ class SigninFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_signin, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val signInButton = view.findViewById<View>(R.id.button_sign_in) as Button
-        var loguoutButton = view.findViewById<View>(R.id.button_logout) as Button
-        loguoutButton.setOnClickListener {
+        // setare actiune pe butonul de logout
+        var logoutButton = view.findViewById<View>(R.id.button_logout) as Button
+        logoutButton.setOnClickListener {
             this.context?.let { it1 ->
                 AuthUI.getInstance()
                     .signOut(it1)
@@ -59,9 +50,14 @@ class SigninFragment : Fragment() {
                     }
             }
         }
+
+        //setare actiune pe butonul de signin
+        val signInButton = view.findViewById<View>(R.id.button_sign_in) as Button
         signInButton.setOnClickListener {
-            signInLauncher.launch(SigninIntentBuilder().createSignInIntent());
-            Log.d("btnSetup", "Selected")
+            // la click pe signin, se va construi un SignInIntent
+            var signinIntent = SigninIntentBuilder().createSignInIntent();
+            // se lanseaza SignInIntent, care face parte din libraria Firebase Auth
+            signInLauncher.launch(signinIntent);
         }
         refresh(view);
 
@@ -70,8 +66,6 @@ class SigninFragment : Fragment() {
     private fun refresh(view: View) {
         val firebaseAuth = FirebaseAuth.getInstance();
         val user = firebaseAuth.currentUser;
-        Log.d("profile", user?.uid.toString())
-        Log.d("profile", user?.email.toString())
         val signInButton = view.findViewById<View>(R.id.button_sign_in) as Button
         var loguoutButton = view.findViewById<View>(R.id.button_logout) as Button
         var profileDetails = view.findViewById<View>(R.id.profile_details) as TextView

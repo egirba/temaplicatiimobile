@@ -42,6 +42,7 @@ class HomeFragment() : Fragment() {
                 Snackbar.LENGTH_SHORT
             ).show()
         }
+        this.takePhoto();
     }
 
     private var LOG_TAG = "homeActivity"
@@ -80,27 +81,24 @@ class HomeFragment() : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //setup buttons
+        //setat actiune butonul takePhoto
         val takePhotoBtn = view.findViewById<View>(R.id.take_photo) as Button
         takePhotoBtn.setOnClickListener {
             val firebaseAuth = FirebaseAuth.getInstance();
             val user = firebaseAuth.currentUser;
+            // verificat daca exista user autentificat
             if (user == null) {
+                // daca nu este nimeni logat, afisat mesaj
+                // cu 2 butoane
+                // la click pe butonul de OK, declansam procesul de logare
                 val view = this.view?.findViewById(R.id.home_view) as View
                 MaterialAlertDialogBuilder(view.context)
                     .setTitle(resources.getString(R.string.signin_required))
@@ -114,7 +112,6 @@ class HomeFragment() : Fragment() {
                     .show()
             } else {
                 this.takePhoto();
-                debug("take photo clicked")
             }
         }
 
@@ -155,7 +152,7 @@ class HomeFragment() : Fragment() {
                     R.string.problema_salvata_ok,
                     Snackbar.LENGTH_SHORT
                 ).show()
-                view.refreshDrawableState()
+//                view.refreshDrawableState()
             }
             .addOnFailureListener { e ->
                 warn("Error adding document", e)

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1092878963637",
+    "firebase_url": "https://temaaplicatiimobile-default-rtdb.firebaseio.com",
     "project_id": "temaaplicatiimobile",
     "storage_bucket": "temaaplicatiimobile.appspot.com"
   },
@@ -13,6 +14,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1092878963637-s2voac1k4kgm1nfeit4bu393rdcnsfs1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.temaaplicatiimobile",
+            "certificate_hash": "3d21f7335ffc4e27cce55ddf0ab876085856cb88"
+          }
+        },
+        {
+          "client_id": "1092878963637-usdqp47u15mfupo7k55o0hfgjg3nhjhr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.temaaplicatiimobile",
+            "certificate_hash": "faa9b687bc11bb3d86cea94f08ed53deb9a3ea3c"
+          }
+        },
         {
           "client_id": "1092878963637-2m1bgoqqskdqgn8dd58ib6a12h8a9hto.apps.googleusercontent.com",
           "client_type": 3

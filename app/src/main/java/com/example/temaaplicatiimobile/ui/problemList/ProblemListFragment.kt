@@ -25,43 +25,25 @@ class ProblemListFragment : Fragment() {
     private var LOG_TAG = "listaProblemeFragment"
     private var _binding: FragmentGalleryBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        setHasOptionsMenu(true)
-
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        return root
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.search_menu, menu)
-        // below line is to get our menu item.
+
+        //Setare actiuni declansate la search
+        //De fiecare data cand tastam ceva in casuta de search
+        //se va declansa onQueryTextChange
         val searchItem = menu.findItem(R.id.actionSearch)
-
-        // getting search view of our item.
         val searchView: SearchView = searchItem.actionView as SearchView
-
-        // below line is to call set on query text listener method.
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                // inside on query text change method we are
-                // calling a method to filter our recycler view.
                 if (newText != null) {
-                    debug(newText)
+                    //Se va executa filtrarea folosind textul din casuta de search
                     filter(newText)
                 }
                 return false
@@ -72,21 +54,23 @@ class ProblemListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // getting the recyclerview by its id
+        //Setare RecyclerView
+        // - se identifica dupa ID
+        // - se construieste adapter-ul
+        // - se interogheaza baza de date in extractListaProbleme
+        // - se adauga adapter-ul la recyclerview
         recyclerview = view.findViewById<RecyclerView>(R.id.recyclerview)
-
-
-
         extractListaProbleme()
-
-
         adapter = CustomAdapter(context);
         adapter.setData(listaProbleme)
-
         recyclerview.adapter = adapter
     }
 
     private fun extractListaProbleme() {
+        //interogare baza de date
+        //-- se iau toate rezultatele din colectia "probleme_semnalate"
+        //-- pentru fiecare document, se construieste un obiect ProblemaSemnalata
+        //-- se adauga lista in adapter, care o sa faca refresh la RecyclerView
         val db = Firebase.firestore;
         db.collection("probleme_semnalate")
             .get()
@@ -113,27 +97,23 @@ class ProblemListFragment : Fragment() {
     }
 
     private fun filter(text: String) {
-        // creating a new array list to filter our data.
+        // construire lista goala
         val filteredlist: ArrayList<ProblemaView> = ArrayList()
 
-        // running a for loop to compare elements.
+        // parcurgere fiecare element din lista originala de probleme
         for (item in listaProbleme) {
-            // checking if the entered string matched with any item of our recycler view.
+            //verificat daca element-ul curent contine text-ul cautat
             if (item.text.lowercase(Locale.getDefault())
                     .contains(text.lowercase(Locale.getDefault()))
             ) {
-                // if the item is matched we are
-                // adding it to our filtered list.
                 filteredlist.add(item)
             }
         }
         if (filteredlist.isEmpty()) {
-            // if no item is added in filtered list we are
-            // displaying a toast message as no data found.
+            //daca nu avem rezultate, afisam un mesaj
             Toast.makeText(this.context, "No Data Found..", Toast.LENGTH_SHORT).show()
         } else {
-            // at last we are passing that filtered
-            // list to our adapter class.
+            // trimitem lista rezultata catre adapter
             adapter.filterList(filteredlist)
             // recyclerview.adapter = adapter
         }
@@ -148,7 +128,19 @@ class ProblemListFragment : Fragment() {
         Log.w(LOG_TAG, s, e)
     }
 
-    fun debug(message: String) {
+    private fun debug(message: String) {
         Log.d(LOG_TAG, message)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        setHasOptionsMenu(true)
+        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        return root
     }
 }

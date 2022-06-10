@@ -26,3 +26,4 @@ captures/
 *.iml
 *.iws
 *.ipr
+app/google-services.json

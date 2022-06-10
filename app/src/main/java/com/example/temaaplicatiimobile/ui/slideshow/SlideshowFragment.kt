@@ -29,16 +29,9 @@ class SlideshowFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val slideshowViewModel =
-//            ViewModelProvider(this).get(SlideshowViewModel::class.java)
-
         _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        val textView: TextView = binding.textSlideshow
-//        slideshowViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
         return root
     }
 
@@ -59,8 +52,7 @@ class SlideshowFragment : Fragment() {
             simpleVideoView.start();
 
 
-            // display a toast message
-            // after the video is completed
+            // afisare mesaj cand videoul a terminat de rulat
             simpleVideoView.setOnCompletionListener {
                 Toast.makeText(
                     context, "Video completed",
@@ -68,8 +60,7 @@ class SlideshowFragment : Fragment() {
                 ).show()
             }
 
-            // display a toast message if any
-            // error occurs while playing the video
+            // afisare mesaj in caz de eroare
             simpleVideoView.setOnErrorListener { mp, what, extra ->
                 Toast.makeText(
                     context, "An Error Occurred " +
